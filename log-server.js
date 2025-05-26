@@ -9,12 +9,12 @@ app.get('/log', (req, res) => {
 
 // Redirection vers ta page XSS hébergée sur GitHub Pages
 app.get('/', (req, res) => {
-  res.redirect('https://aketo.github.io/xss-test/xss.html'); // ← adapte à ton vrai repo si différent
+  res.redirect('https://aketo.github.io/xss-front/xss.html'); // ← adapte à ton vrai repo si différent
 });
 
 // Route alternative au cas où tu veux soumettre cette URL au challenge
 app.get('/xss', (req, res) => {
-  res.redirect('https://aketo.github.io/xss-test/xss.html'); // ← idem
+  res.redirect('https://aketo.github.io/xss-front/xss.html'); // ← idem
 });
 
 // Lancement du serveur
